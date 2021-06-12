@@ -1,3 +1,5 @@
+using EasyCron.Sample.Jobs;
+using EasyCronJob.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +33,12 @@ namespace EasyCron.Sample
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EasyCron.Sample", Version = "v1" });
+            });
+
+            services.ApplyResulation<ConsoleCronJob>(options =>
+            {
+                options.CronExpression = "* * * * *";
+                options.TimeZoneInfo = TimeZoneInfo.Local;
             });
         }
 
