@@ -1,37 +1,115 @@
-## Welcome to GitHub Pages
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/47147484/121789342-dcf22600-cbdd-11eb-8394-c7dca1a95f97.png" style="max-width:100%;" height="140" />
+</p>
 
-You can use the [editor on GitHub](https://github.com/furkandeveloper/EasyCronJob/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+[![CodeFactor](https://www.codefactor.io/repository/github/furkandeveloper/easycronjob/badge)](https://www.codefactor.io/repository/github/furkandeveloper/easycronjob)
+<a href="https://gitmoji.carloscuesta.me">
+  <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
+</a>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+![Nuget](https://img.shields.io/nuget/dt/EasyCronJob.Core?label=EasyCronJob.Core%20Downloads)
+![Nuget](https://img.shields.io/nuget/v/EasyCronJob.Core?label=EasyCronJob.Core)
+![Nuget](https://img.shields.io/nuget/dt/EasyCronJob.Abstractions?label=EasyCronJob.Abstractions%20Downloads)
+![Nuget](https://img.shields.io/nuget/v/EasyCronJob.Abstractions?label=EasyCronJob.Abstractions)
 
-### Markdown
+***
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## What is Cron Job?
+**Cron** is a program used to repeat a task on a system. A task assignment is a cron job if it does not command a repeat as a whole.
 
-```markdown
-Syntax highlighted code block
+### How does a cron job work?
 
-# Header 1
-## Header 2
-### Header 3
+If you want to schedule a task once at a later time, you can use another command like it. But for repetitive tasks, cron is a great solution.
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+<pre><code>                                       Allowed values    Allowed special characters   Comment
 
-[Link](url) and ![Image](src)
+┌───────────── second (optional)       0-59              * , - /                      
+│ ┌───────────── minute                0-59              * , - /                      
+│ │ ┌───────────── hour                0-23              * , - /                      
+│ │ │ ┌───────────── day of month      1-31              * , - / L W ?                
+│ │ │ │ ┌───────────── month           1-12 or JAN-DEC   * , - /                      
+│ │ │ │ │ ┌───────────── day of week   0-6  or SUN-SAT   * , - / # L ?                Both 0 and 7 means SUN
+│ │ │ │ │ │
+* * * * * *
+</code></pre><div class="zeroclipboard-container position-absolute right-0 top-0">
+  
+***
+  
+## Cron Services
+
+You can write your own CronJob classes using the CronJobService abstract class.
+We've included a sample cron job for you.
+When this cron job runs, it logs the related job on the console.
+
+First, install the EasyCronJob.Core library on your application via [Nuget](https://www.nuget.org/packages/EasyCronJob.Core/).
+
+You can now create your own cron jobs.
+
+```csharp
+    public class ConsoleCronJob : CronJobService
+    {
+        private readonly ILogger<ConsoleCronJob> logger;
+
+        public ConsoleCronJob(ICronConfiguration<ConsoleCronJob> cronConfiguration, ILogger<ConsoleCronJob> logger) 
+            : base(cronConfiguration.CronExpression,cronConfiguration.TimeZoneInfo)
+        {
+            this.logger = logger;
+        }
+
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            logger.LogInformation("Start");
+            return base.StartAsync(cancellationToken);
+        }
+
+
+        protected override Task ScheduleJob(CancellationToken cancellationToken)
+        {
+            logger.LogInformation("Scheduled");
+            return base.ScheduleJob(cancellationToken);
+        }
+
+        public override Task DoWork(CancellationToken cancellationToken)
+        {
+            logger.LogInformation("Do Work");
+            return base.DoWork(cancellationToken);
+        }
+    }
+```
+  
+***
+  ## Startup Configuration
+  
+For the cron job you created, you must configure it in Startup.cs.
+
+Do not worry. This configuration is pretty simple.
+
+```csharp
+services.ApplyResulation<ConsoleCronJob>(options =>
+{
+     options.CronExpression = "* * * * *";
+     options.TimeZoneInfo = TimeZoneInfo.Local;
+});
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Process completed. Now, your cron job will run when the cron expression value you specified comes.
+  ***
+  ## Crontab.guru
 
-### Jekyll Themes
+Cron values ​​can be confusing at times.
+You don't have to memorize them.
+You can use the [crontab.guru](https://crontab.guru/) website to generate the cron values ​​you want or to learn the runtime of an existing cron value.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/furkandeveloper/EasyCronJob/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+![image](https://user-images.githubusercontent.com/47147484/121820030-25224e80-cc99-11eb-82c0-059688736ed0.png)
+  
+  ***
+  
+### Documentation
+Visit [Wiki](https://github.com/furkandeveloper/EasyCronJob/wiki) page for documentation.
 
-### Support or Contact
+***
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+![image](https://user-images.githubusercontent.com/47147484/121820542-17ba9380-cc9c-11eb-9961-f8a882aa7607.png)
