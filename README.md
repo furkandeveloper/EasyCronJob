@@ -16,3 +16,6 @@ If you liked the project or if **EasyCronJob** helped you, please give a star.
 ### Documentation
 Visit [Wiki](https://github.com/furkandeveloper/EasyCronJob/wiki) page for documentation.
 
+![image](https://user-images.githubusercontent.com/47147484/121820542-17ba9380-cc9c-11eb-9961-f8a882aa7607.png)
+
+
