@@ -13,3 +13,6 @@ If you liked the project or if **EasyCronJob** helped you, please give a star.
 ### Purpose
 **EasyCronJob** provides easy cron job to your application on IHostedService.
 
+### Documentation
+Visit [Wiki](https://github.com/furkandeveloper/EasyCronJob/wiki) page for documentation.
+
