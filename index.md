@@ -36,8 +36,6 @@ If you want to schedule a task once at a later time, you can use another command
 * * * * * *
 </code></pre><div class="zeroclipboard-container position-absolute right-0 top-0">
   
-***
-  
 ## Cron Services
 
 You can write your own CronJob classes using the CronJobService abstract class.
