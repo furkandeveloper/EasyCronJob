@@ -22,19 +22,6 @@
 
 If you want to schedule a task once at a later time, you can use another command like it. But for repetitive tasks, cron is a great solution.
 
-
-
-<pre><code>                                       Allowed values    Allowed special characters   Comment
-
-┌───────────── second (optional)       0-59              * , - /                      
-│ ┌───────────── minute                0-59              * , - /                      
-│ │ ┌───────────── hour                0-23              * , - /                      
-│ │ │ ┌───────────── day of month      1-31              * , - / L W ?                
-│ │ │ │ ┌───────────── month           1-12 or JAN-DEC   * , - /                      
-│ │ │ │ │ ┌───────────── day of week   0-6  or SUN-SAT   * , - / # L ?                Both 0 and 7 means SUN
-│ │ │ │ │ │
-* * * * * *
-</code></pre><div class="zeroclipboard-container position-absolute right-0 top-0">
   
 ## Cron Services
 
