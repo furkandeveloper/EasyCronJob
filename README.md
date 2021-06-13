@@ -6,6 +6,13 @@
 <a href="https://gitmoji.carloscuesta.me">
   <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
 </a>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+![Nuget](https://img.shields.io/nuget/dt/EasyCronJob.Core?label=EasyCronJob.Core%20Downloads)
+![Nuget](https://img.shields.io/nuget/v/EasyCronJob.Core?label=EasyCronJob.Core)
+![Nuget](https://img.shields.io/nuget/dt/EasyCronJob.Abstractions?label=EasyCronJob.Abstractions%20Downloads)
+![Nuget](https://img.shields.io/nuget/v/EasyCronJob.Abstractions?label=EasyCronJob.Abstractions)
+
 ***
 
 ## Give a Star 🌟
