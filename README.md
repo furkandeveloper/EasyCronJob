@@ -2,6 +2,10 @@
   <img src="https://user-images.githubusercontent.com/47147484/121789342-dcf22600-cbdd-11eb-8394-c7dca1a95f97.png" style="max-width:100%;" height="140" />
 </p>
 
+[![CodeFactor](https://www.codefactor.io/repository/github/furkandeveloper/easycronjob/badge)](https://www.codefactor.io/repository/github/furkandeveloper/easycronjob)
+<a href="https://gitmoji.carloscuesta.me">
+  <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
+</a>
 ***
 
 ## Give a Star 🌟
