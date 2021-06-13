@@ -65,7 +65,6 @@ You can now create your own cron jobs.
     }
 ```
   
-***
   ## Startup Configuration
   
 For the cron job you created, you must configure it in Startup.cs.
@@ -81,7 +80,7 @@ services.ApplyResulation<ConsoleCronJob>(options =>
 ```
 
 Process completed. Now, your cron job will run when the cron expression value you specified comes.
-  ***
+
   ## Crontab.guru
 
 Cron values ​​can be confusing at times.
