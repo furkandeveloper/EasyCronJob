@@ -31,7 +31,7 @@ namespace EasyCronJob.Abstractions
                 var delay = next.Value - DateTimeOffset.Now;
                 if (delay.TotalMilliseconds <= 0)   // prevent non-positive values from being passed into Timer
                 {
-                    await ScheduleJob(cancellationToken);
+                    await ScheduleJob(cancellationToken).ConfigureAwait(true);
                 }
                 timer = new System.Timers.Timer(delay.TotalMilliseconds);
                 timer.Elapsed += async (sender, args) =>
@@ -41,22 +41,22 @@ namespace EasyCronJob.Abstractions
 
                     if (!cancellationToken.IsCancellationRequested)
                     {
-                        await DoWork(cancellationToken);
+                        await DoWork(cancellationToken).ConfigureAwait(true);
                     }
 
                     if (!cancellationToken.IsCancellationRequested)
                     {
-                        await ScheduleJob(cancellationToken);    // reschedule next
+                        await ScheduleJob(cancellationToken).ConfigureAwait(true);    // reschedule next
                     }
                 };
                 timer.Start();
             }
-            await Task.CompletedTask;
+            await Task.CompletedTask.ConfigureAwait(true);
         }
 
         public virtual async Task DoWork(CancellationToken cancellationToken)
         {
-            await Task.Delay(50, cancellationToken);  // do the work
+            await Task.Delay(50, cancellationToken).ConfigureAwait(true);  // do the work
         }
 
         public void Dispose()
@@ -66,7 +66,7 @@ namespace EasyCronJob.Abstractions
 
         public virtual async Task StartAsync(CancellationToken cancellationToken)
         {
-            await ScheduleJob(cancellationToken);
+            await ScheduleJob(cancellationToken).ConfigureAwait(true);
         }
 
         public virtual async Task StopAsync(CancellationToken cancellationToken)
