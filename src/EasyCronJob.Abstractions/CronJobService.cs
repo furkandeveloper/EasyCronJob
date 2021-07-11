@@ -72,7 +72,7 @@ namespace EasyCronJob.Abstractions
         public virtual async Task StopAsync(CancellationToken cancellationToken)
         {
             timer?.Stop();
-            await Task.CompletedTask;
+            await Task.CompletedTask.ConfigureAwait(true);
         }
     }
 }
