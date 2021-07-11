@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Authors>furkandeveloper</Authors>
+		<Company>furkandeveloper</Company>
+		<Version>1.0.1</Version>
+		<Description>This repository provides easy cron job to your application on IHostedService.</Description>
+		<PackageIcon>easyCronJob.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/furkandeveloper/EasyCronJob</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/furkandeveloper/EasyCronJob</RepositoryUrl>
+		<PackageTags>cronjob, cron-jobs, recurring-tasks, recurring-events, recurring, recurring-job, cron, cronjob-scheduler</PackageTags>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasyCronJob.Abstractions\EasyCronJob.Abstractions.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="easyCronJob.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
