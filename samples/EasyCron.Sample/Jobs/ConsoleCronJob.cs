@@ -20,20 +20,20 @@ namespace EasyCron.Sample.Jobs
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
-            logger.LogInformation("Start");
+            logger.LogInformation("Start Console Job" + " Start Time : " + DateTime.UtcNow);
             return base.StartAsync(cancellationToken);
         }
 
 
         protected override Task ScheduleJob(CancellationToken cancellationToken)
         {
-            logger.LogInformation("Scheduled");
+            logger.LogInformation("Schedule Console Job" + " Start Time : " + DateTime.UtcNow);
             return base.ScheduleJob(cancellationToken);
         }
 
         public override Task DoWork(CancellationToken cancellationToken)
         {
-            logger.LogInformation("Do Work");
+            logger.LogInformation("Working Console Job" + " Start Time : " + DateTime.UtcNow);
             return base.DoWork(cancellationToken);
         }
     }
