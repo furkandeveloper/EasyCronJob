@@ -8,6 +8,7 @@
 | `Stats` | ![Nuget](https://img.shields.io/nuget/dt/EasyCronJob.Core?label=EasyCronJob.Core%20Downloads) ![Nuget](https://img.shields.io/nuget/v/EasyCronJob.Core?label=EasyCronJob.Core) ![Nuget](https://img.shields.io/nuget/dt/EasyCronJob.Abstractions?label=EasyCronJob.Abstractions%20Downloads) ![Nuget](https://img.shields.io/nuget/v/EasyCronJob.Abstractions?label=EasyCronJob.Abstractions) |
 | `License` | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)|
 | `Github Activity` | ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/furkandeveloper/EasyCronJob) ![GitHub contributors](https://img.shields.io/github/contributors/furkandeveloper/EasyCronJob) ![GitHub last commit](https://img.shields.io/github/last-commit/furkandeveloper/EasyCronJob) ![GitHub search hit counter](https://img.shields.io/github/search/furkandeveloper/EasyCronJob/EasyCronJob)|
+| `Languages` | ![GitHub top language](https://img.shields.io/github/languages/top/furkandeveloper/EasyCronJob) |
 
 <p align="center">
   <a href="https://gitmoji.carloscuesta.me">
