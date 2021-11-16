@@ -37,4 +37,6 @@ Visit [Wiki](https://github.com/furkandeveloper/EasyCronJob/wiki) page for docum
 
 ![image](https://user-images.githubusercontent.com/47147484/121820542-17ba9380-cc9c-11eb-9961-f8a882aa7607.png)
 
+<hr/>
 
+![Alt](https://repobeats.axiom.co/api/embed/32d30317acb2e826ee510a6ee232fa498a1cf9bb.svg "Repobeats analytics image")
