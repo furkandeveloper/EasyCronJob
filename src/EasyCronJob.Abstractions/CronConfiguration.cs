@@ -1,9 +1,6 @@
-﻿using EasyCronJob.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
-namespace EasyCronJob.Core
+namespace EasyCronJob.Abstractions
 {
     /// <summary>
     /// Cron Configuration Object
