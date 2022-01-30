@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\EasyCronJob.AutoConfigurer\EasyCronJob.AutoConfigurer.csproj" />
     <ProjectReference Include="..\..\src\EasyCronJob.Core\EasyCronJob.Core.csproj" />
   </ItemGroup>
 
