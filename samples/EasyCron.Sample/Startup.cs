@@ -35,22 +35,21 @@ namespace EasyCron.Sample
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EasyCron.Sample", Version = "v1" });
             });
-            //services.ApplyResulation<ConsoleCronJob>(options =>
-            //{
-            //    options.CronExpression = "* * * * *";
-            //    options.TimeZoneInfo = TimeZoneInfo.Local;
-            //});
-            //services.ApplyResulation<MyJob>(options =>
-            //{
-            //    options.CronExpression = "* * * * *";
-            //    options.TimeZoneInfo = TimeZoneInfo.Local;
-            //});
-            //services.ApplyResulation2(services.BuildServiceProvider());
-            //services.ApplyResulation3(services.BuildServiceProvider());
+
+            services.ApplyResulation<ConsoleCronJob>(options =>
+            {
+                options.CronExpression = "* * * * *";
+                options.TimeZoneInfo = TimeZoneInfo.Local;
+            });
+            services.ApplyResulation<MyJob>(options =>
+            {
+                options.CronExpression = "* * * * *";
+                options.TimeZoneInfo = TimeZoneInfo.Local;
+            });
 
 
-            services.InitializeCronServices();
-            services.AutoConfigurer();
+            //services.InitializeCronServices();
+            //services.AutoConfigurer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
