@@ -1,4 +1,5 @@
 using EasyCron.Sample.Jobs;
+using EasyCronJob.AutoConfigurer;
 using EasyCronJob.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +41,15 @@ namespace EasyCron.Sample
                 options.CronExpression = "* * * * *";
                 options.TimeZoneInfo = TimeZoneInfo.Local;
             });
+            services.ApplyResulation<MyJob>(options =>
+            {
+                options.CronExpression = "* * * * *";
+                options.TimeZoneInfo = TimeZoneInfo.Local;
+            });
+
+
+            //services.InitializeCronServices();
+            //services.AutoConfigurer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
