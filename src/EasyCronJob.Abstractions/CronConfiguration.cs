@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cronos;
+using System;
 
 namespace EasyCronJob.Abstractions
 {
@@ -17,5 +18,11 @@ namespace EasyCronJob.Abstractions
         /// Represents any time zone in the world.
         /// </summary>
         public TimeZoneInfo TimeZoneInfo { get; set; }
+        
+        /// <summary>
+        /// Cron Format
+        /// Default <see cref="CronFormat.Standard"/>
+        /// </summary>
+        public CronFormat CronFormat { get; set; } = CronFormat.Standard;
     }
 }
