@@ -13,7 +13,7 @@ namespace EasyCron.Sample.Jobs
         private readonly ILogger<ConsoleCronJob> logger;
 
         public ConsoleCronJob(ICronConfiguration<ConsoleCronJob> cronConfiguration, ILogger<ConsoleCronJob> logger) 
-            : base(cronConfiguration.CronExpression,cronConfiguration.TimeZoneInfo)
+            : base(cronConfiguration.CronExpression,cronConfiguration.TimeZoneInfo, cronConfiguration.CronFormat)
         {
             this.logger = logger;
         }
