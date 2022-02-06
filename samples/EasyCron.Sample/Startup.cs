@@ -38,13 +38,15 @@ namespace EasyCron.Sample
 
             services.ApplyResulation<ConsoleCronJob>(options =>
             {
-                options.CronExpression = "* * * * *";
+                options.CronExpression = "*/10 * * * * *";
                 options.TimeZoneInfo = TimeZoneInfo.Local;
+                options.CronFormat = Cronos.CronFormat.IncludeSeconds;
             });
             services.ApplyResulation<MyJob>(options =>
             {
                 options.CronExpression = "* * * * *";
                 options.TimeZoneInfo = TimeZoneInfo.Local;
+                options.CronFormat = Cronos.CronFormat.Standard;
             });
 
 
