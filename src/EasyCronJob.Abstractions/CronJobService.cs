@@ -16,11 +16,13 @@ namespace EasyCronJob.Abstractions
     {
         private System.Timers.Timer timer;
         private readonly TimeZoneInfo timeZoneInfo;
+        private readonly CronFormat cronFormat;
         private readonly CronExpression cronExpression;
-        protected CronJobService(string cronExpression, TimeZoneInfo timeZoneInfo)
+        protected CronJobService(string cronExpression, TimeZoneInfo timeZoneInfo, CronFormat cronFormat = CronFormat.Standard)
         {
             this.timeZoneInfo = timeZoneInfo;
-            this.cronExpression = CronExpression.Parse(cronExpression);
+            this.cronFormat = cronFormat;
+            this.cronExpression = CronExpression.Parse(cronExpression, this.cronFormat);
         }
 
         protected virtual async Task ScheduleJob(CancellationToken cancellationToken)
