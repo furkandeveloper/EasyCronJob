@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cronos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,11 @@ namespace EasyCronJob.Abstractions
         /// TimeZone Information
         /// </summary>
         public TimeZoneInfo TimeZoneInfo { get; set; }
+
+        /// <summary>
+        /// Cron Format
+        /// Default <see cref="CronFormat.Standard"/>
+        /// </summary>
+        public CronFormat CronFormat { get; set; }
     }
 }

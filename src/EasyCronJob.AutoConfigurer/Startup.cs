@@ -1,4 +1,5 @@
-﻿using EasyCronJob.Abstractions;
+﻿using Cronos;
+using EasyCronJob.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -43,12 +44,13 @@ namespace EasyCronJob.AutoConfigurer
         /// <returns>
         /// Returns <see cref="Tuple{T1, T2}"/>
         /// </returns>
-        private static Tuple<string, TimeZoneInfo> FindServiceParameter(IServiceCollection services, string serviceName)
+        private static Tuple<string, TimeZoneInfo, CronFormat> FindServiceParameter(IServiceCollection services, string serviceName)
         {
             var serviceProvider = services.BuildServiceProvider();
             var configurationObject = serviceProvider.GetRequiredService<IConfiguration>();
             string cronExpression = configurationObject.GetValue<string>("CronJobs:" + serviceName + ":CronExpression");
             string info = configurationObject.GetValue<string>("CronJobs:" + serviceName + ":TimeZoneInfo");
+            string cronFormat = configurationObject.GetValue<string>("CronJobs:" + serviceName + ":CronFormat");
             TimeZoneInfo timeZoneInfo;
             switch (info)
             {
@@ -62,7 +64,21 @@ namespace EasyCronJob.AutoConfigurer
                     timeZoneInfo = TimeZoneInfo.Local;
                     break;
             }
-            return new Tuple<string, TimeZoneInfo>(cronExpression, timeZoneInfo);
+            CronFormat format = CronFormat.Standard;
+            switch (cronFormat)
+            {
+                case "Standard":
+                    format = CronFormat.Standard;
+                    break;
+                case "IncludeSeconds":
+                    format = CronFormat.IncludeSeconds;
+                    break;
+                default:
+                    format = CronFormat.Standard;
+                    break;
+            }
+
+            return new Tuple<string, TimeZoneInfo, CronFormat>(cronExpression, timeZoneInfo, format);
         }
 
         /// <summary>
@@ -136,6 +152,7 @@ namespace EasyCronJob.AutoConfigurer
                 {
                     findedService.GetType().GetProperty("CronExpression").SetValue(findedService, cronParameters.Item1);
                     findedService.GetType().GetProperty("TimeZoneInfo").SetValue(findedService, cronParameters.Item2);
+                    findedService.GetType().GetProperty("CronFormat").SetValue(findedService, cronParameters.Item3);
                 }
                 ctorServices.Add(findedService);
             }
