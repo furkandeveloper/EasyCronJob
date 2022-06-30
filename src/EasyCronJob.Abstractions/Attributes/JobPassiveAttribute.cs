@@ -9,6 +9,5 @@ namespace EasyCronJob.Abstractions
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class JobPassiveAttribute : Attribute
     {
-
     }
 }
