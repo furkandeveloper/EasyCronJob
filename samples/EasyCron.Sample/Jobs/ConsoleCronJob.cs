@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace EasyCron.Sample.Jobs
 {
+    //[JobActive]
+    //[JobActive(false)]
+    [JobPassive]
     public class ConsoleCronJob : CronJobService
     {
         private readonly ILogger<ConsoleCronJob> logger;

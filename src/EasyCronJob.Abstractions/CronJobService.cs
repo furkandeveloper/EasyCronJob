@@ -14,19 +14,42 @@ namespace EasyCronJob.Abstractions
     /// </summary>
     public abstract class CronJobService : IHostedService, IDisposable
     {
+        private bool _active = true;
+
         private System.Timers.Timer timer;
         private readonly TimeZoneInfo timeZoneInfo;
         private readonly CronFormat cronFormat;
         private readonly CronExpression cronExpression;
         protected CronJobService(string cronExpression, TimeZoneInfo timeZoneInfo, CronFormat cronFormat = CronFormat.Standard)
-        {
+        {         
             this.timeZoneInfo = timeZoneInfo;
             this.cronFormat = cronFormat;
             this.cronExpression = CronExpression.Parse(cronExpression, this.cronFormat);
+
+            this.ActiveAttributeCheck();
+        }
+
+        private void ActiveAttributeCheck()
+        {
+            this.GetType().CheckAttribute<JobActiveAttribute>().Do(() =>
+            {
+                this._active = this.GetType().GetAttributeValue((JobActiveAttribute d) => d.Active);
+            });
+
+            this.GetType().CheckAttribute<JobPassiveAttribute>().Do(() =>
+            {
+                this._active = false;
+            });
+        }
+        public void SetActive(bool active)
+        {
+            this._active = active;
         }
 
         protected virtual async Task ScheduleJob(CancellationToken cancellationToken)
         {
+            if (!_active) return;
+
             var next = cronExpression.GetNextOccurrence(DateTimeOffset.Now, timeZoneInfo);
             if (next.HasValue)
             {
