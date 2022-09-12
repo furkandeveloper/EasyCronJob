@@ -40,3 +40,8 @@ Visit [Wiki](https://github.com/furkandeveloper/EasyCronJob/wiki) page for docum
 <hr/>
 
 ![Alt](https://repobeats.axiom.co/api/embed/32d30317acb2e826ee510a6ee232fa498a1cf9bb.svg "Repobeats analytics image")
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=furkandeveloper/EasyCronJob&type=Date)](https://star-history.com/#furkandeveloper/EasyCronJob&Date)
+
