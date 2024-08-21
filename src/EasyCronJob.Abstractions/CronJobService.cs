@@ -31,27 +31,45 @@ namespace EasyCronJob.Abstractions
             if (next.HasValue)
             {
                 var delay = next.Value - DateTimeOffset.Now;
+                const double maxDelay = int.MaxValue; // Maximum delay in milliseconds (2147483647 ms)
                 if (delay.TotalMilliseconds <= 0)   // prevent non-positive values from being passed into Timer
                 {
                     await ScheduleJob(cancellationToken).ConfigureAwait(true);
+                    return;
                 }
-                timer = new System.Timers.Timer(delay.TotalMilliseconds);
-                timer.Elapsed += async (sender, args) =>
+
+                                
+                void StartChunkedTimer(double remainingDelay) // Recursive function to handle timer chunks
                 {
-                    timer.Dispose();  // reset and dispose timer
-                    timer = null;
-
-                    if (!cancellationToken.IsCancellationRequested)
+                    double currentDelay = Math.Min(remainingDelay, maxDelay);
+                
+                    timer = new System.Timers.Timer(currentDelay);
+                    timer.Elapsed += async (sender, args) =>
                     {
-                        await DoWork(cancellationToken).ConfigureAwait(true);
-                    }
-
-                    if (!cancellationToken.IsCancellationRequested)
-                    {
-                        await ScheduleJob(cancellationToken).ConfigureAwait(true);    // reschedule next
-                    }
-                };
-                timer.Start();
+                        timer.Dispose(); // Dispose of the current timer
+                        timer = null;
+                
+                        if (cancellationToken.IsCancellationRequested) return; // Exit if cancellation is requested
+                
+                        double newRemainingDelay = remainingDelay - currentDelay;
+                
+                        if (newRemainingDelay > 0) StartChunkedTimer(newRemainingDelay); // Start the next timer chunk
+                        else
+                        {
+                            if (!cancellationToken.IsCancellationRequested)
+                            {
+                                await DoWork(cancellationToken).ConfigureAwait(true);
+                            }
+                            if (!cancellationToken.IsCancellationRequested)
+                            {
+                                await ScheduleJob(cancellationToken).ConfigureAwait(true);
+                            }
+                        }
+                    };
+                    timer.Start();
+                }
+                  
+                StartChunkedTimer(delay.TotalMilliseconds); // Start the first timer chunk
             }
             await Task.CompletedTask.ConfigureAwait(true);
         }
