@@ -142,6 +142,8 @@ namespace EasyCronJob.AutoConfigurer
         private static IServiceCollection ConfigureCronServices(IServiceCollection services, Type item, IServiceProvider serviceProvider)
         {
             var cronParameters = FindServiceParameter(services, item.Name);
+            if (string.IsNullOrWhiteSpace(cronParameters.Item1))
+                return services;
             var ctors = item.GetConstructors().FirstOrDefault();
             var parameters = ctors.GetParameters();
             List<object> ctorServices = new List<object>();
